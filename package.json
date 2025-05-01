@@ -1,0 +1,23 @@
+{
+  "name": "focus-crawler",
+  "version": "1.0.0",
+  "description": "focus-crawler",
+  "main": "index.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/devjin24/focus-crawler.git"
+  },
+  "author": "devjin24",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/devjin24/focus-crawler/issues"
+  },
+  "homepage": "https://github.com/devjin24/focus-crawler#readme",
+  "devDependencies": {
+    "electron": "^36.0.1"
+  }
+}
