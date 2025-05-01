@@ -2,10 +2,23 @@
   "name": "focus-crawler",
   "version": "1.0.0",
   "description": "focus-crawler",
-  "main": "index.js",
+  "main": "src/main.js",
   "scripts": {
     "start": "electron .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:mac": "electron-builder --mac"
+  },
+  "build": {
+    "appId": "com.github.devjin24",
+    "productName": "FocusCrawler",
+    "mac": {
+      "category": "public.app-category.developer-tools",
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "icon": "build/icon.icns"
+    }
   },
   "repository": {
     "type": "git",
@@ -18,6 +31,7 @@
   },
   "homepage": "https://github.com/devjin24/focus-crawler#readme",
   "devDependencies": {
-    "electron": "^36.0.1"
+    "electron": "^36.0.1",
+    "electron-builder": "^26.0.12"
   }
 }
