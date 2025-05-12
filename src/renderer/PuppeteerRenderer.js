@@ -25,7 +25,13 @@ function PuppeteerRenderer() {
         const cleanText = (text) => {
           if (!text) return null;
           // 모든 공백 문자(스페이스, 탭, 줄바꿈)를 제거
-          return text.replace(/[\s,]+/g, "")?.match(/[0-9]+/)?.[0] || null;
+          return text.replace(/[\s]+/g, "") || null;
+        };
+
+        const cleanPrice = (text) => {
+          if (!text) return null;
+          // 모든 공백 문자(스페이스, 탭, 줄바꿈)를 제거
+          return text.replace(/[,]+/g, "")?.match || null;
         };
         const price1 = document.querySelector(
           "div.price span.price-1"
@@ -33,9 +39,28 @@ function PuppeteerRenderer() {
         const price2 = document.querySelector(
           "div.price span.price-2"
         )?.textContent;
+        const priceChildElements = document.querySelectorAll(
+          "#saleLayer .price_child .flex-item"
+        );
+
+        // 모든 텍스트를 하나의 문자열로 합치기
+        const sale = [];
+
+        // 각 price_child 요소에서 모든 텍스트 내용 추출하여 하나의 문자열로 결합
+        priceChildElements.forEach((element) => {
+          sale.push({
+            label: cleanText(
+              element.querySelector("span.label")?.textContent.trim()
+            ),
+            price: cleanText(
+              element.querySelector("span.price")?.textContent.trim()
+            ),
+          });
+        });
         return {
           price1: cleanText(price1),
           price2: cleanText(price2),
+          sale
         };
       });
 
