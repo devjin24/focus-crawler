@@ -2,11 +2,15 @@
   "name": "focus-crawler",
   "version": "1.0.0",
   "description": "focus-crawler",
-  "main": "src/main.js",
+  "main": "electron/main.js",
+  "type": "module",
   "scripts": {
-    "start": "electron .",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build:mac": "electron-builder --mac"
+    "dev": "concurrently \"npm run dev:vite\" \"npm run dev:electron\"",
+    "dev:vite": "vite",
+    "dev:electron": "wait-on http://localhost:5173 && electron .",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "build:win": "vite build && electron-builder --win",
+    "build:mac": "vite build && electron-builder --mac"
   },
   "build": {
     "appId": "com.github.devjin24",
@@ -25,13 +29,36 @@
     "url": "git+https://github.com/devjin24/focus-crawler.git"
   },
   "author": "devjin24",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/devjin24/focus-crawler/issues"
   },
   "homepage": "https://github.com/devjin24/focus-crawler#readme",
   "devDependencies": {
+    "@babel/core": "^7.27.1",
+    "@babel/preset-env": "^7.27.2",
+    "@types/jest": "^29.5.14",
+    "@vitejs/plugin-react": "^4.4.1",
+    "babel-jest": "^29.7.0",
+    "concurrently": "^9.1.2",
     "electron": "^36.0.1",
-    "electron-builder": "^26.0.12"
+    "electron-builder": "^26.0.12",
+    "electron-is-dev": "^3.0.1",
+    "jest": "^29.7.0",
+    "jest-circus": "^29.7.0",
+    "jest-util": "^29.7.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "react-scripts": "^5.0.1",
+    "vite": "^6.3.5",
+    "wait-on": "^8.0.3"
+  },
+  "dependencies": {
+    "@emotion/react": "^11.14.0",
+    "@emotion/styled": "^11.14.0",
+    "@mui/icons-material": "^7.1.0",
+    "@mui/material": "^7.1.0",
+    "env-cmd": "^10.1.0",
+    "puppeteer": "^24.8.2"
   }
 }
